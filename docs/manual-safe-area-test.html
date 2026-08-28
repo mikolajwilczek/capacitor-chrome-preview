@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>Capacitor Chrome Preview Safe Area Test</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        color: #1d2433;
+        background: #f7f8fb;
+        font: 14px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      main {
+        display: grid;
+        gap: 16px;
+        padding-top: calc(16px + var(--safe-area-inset-top, env(safe-area-inset-top, 0px)));
+        padding-right: calc(16px + var(--safe-area-inset-right, env(safe-area-inset-right, 0px)));
+        padding-bottom: calc(16px + var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px)));
+        padding-left: calc(16px + var(--safe-area-inset-left, env(safe-area-inset-left, 0px)));
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      h2 {
+        font-size: 15px;
+      }
+
+      code {
+        border-radius: 4px;
+        padding: 2px 4px;
+        background: #eef1f6;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+        font-size: 12px;
+      }
+
+      .probe {
+        border: 1px solid #d8deea;
+        border-radius: 8px;
+        background: #fff;
+        overflow: hidden;
+      }
+
+      .probe-header {
+        padding: 12px 14px;
+        border-bottom: 1px solid #e4e8f0;
+        background: #fdfefe;
+      }
+
+      .probe-body {
+        min-height: 72px;
+        padding: 14px;
+      }
+
+      .direct-env-top {
+        padding-top: env(safe-area-inset-top, 0px);
+        background: rgba(34, 126, 229, 0.14);
+      }
+
+      .fallback-var-top {
+        padding-top: var(--safe-area-inset-top, env(safe-area-inset-top, 0px));
+        background: rgba(12, 150, 120, 0.14);
+      }
+
+      .direct-env-bottom {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        background: rgba(34, 126, 229, 0.14);
+      }
+
+      .fallback-var-bottom {
+        padding-bottom: var(--safe-area-inset-bottom, env(safe-area-inset-bottom, 0px));
+        background: rgba(12, 150, 120, 0.14);
+      }
+
+      .metrics {
+        display: grid;
+        gap: 8px;
+        border: 1px solid #d8deea;
+        border-radius: 8px;
+        padding: 14px;
+        background: #fff;
+      }
+
+      .metric-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Safe Area Test</h1>
+      <p>Use this page with the preview CLI to compare direct browser <code>env()</code> values and Capacitor-style fallback variables.</p>
+
+      <section class="probe direct-env-top">
+        <div class="probe-header">
+          <h2>Direct env top</h2>
+          <code>env(safe-area-inset-top)</code>
+        </div>
+        <div class="probe-body">The blue top padding should match CDP safe-area emulation.</div>
+      </section>
+
+      <section class="probe fallback-var-top">
+        <div class="probe-header">
+          <h2>Fallback variable top</h2>
+          <code>var(--safe-area-inset-top, env(...))</code>
+        </div>
+        <div class="probe-body">The green top padding should match Capacitor fallback CSS injection.</div>
+      </section>
+
+      <section class="probe direct-env-bottom">
+        <div class="probe-header">
+          <h2>Direct env bottom</h2>
+          <code>env(safe-area-inset-bottom)</code>
+        </div>
+        <div class="probe-body">The blue bottom padding should change between gesture and 3-button Android profiles.</div>
+      </section>
+
+      <section class="probe fallback-var-bottom">
+        <div class="probe-header">
+          <h2>Fallback variable bottom</h2>
+          <code>var(--safe-area-inset-bottom, env(...))</code>
+        </div>
+        <div class="probe-body">The green bottom padding should change between gesture and 3-button Android profiles.</div>
+      </section>
+
+      <section class="metrics" aria-live="polite">
+        <h2>Computed Values</h2>
+        <div class="metric-row">
+          <span>Direct env top padding</span>
+          <code id="direct-env-top-value">pending</code>
+        </div>
+        <div class="metric-row">
+          <span>Fallback top padding</span>
+          <code id="fallback-var-top-value">pending</code>
+        </div>
+        <div class="metric-row">
+          <span>Direct env bottom padding</span>
+          <code id="direct-env-bottom-value">pending</code>
+        </div>
+        <div class="metric-row">
+          <span>Fallback bottom padding</span>
+          <code id="fallback-var-bottom-value">pending</code>
+        </div>
+        <div class="metric-row">
+          <span><code>--safe-area-inset-bottom</code></span>
+          <code id="css-var-bottom-value">pending</code>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      function updateMetrics() {
+        const rootStyle = getComputedStyle(document.documentElement);
+        const metrics = [
+          ['.direct-env-top', 'paddingTop', 'direct-env-top-value'],
+          ['.fallback-var-top', 'paddingTop', 'fallback-var-top-value'],
+          ['.direct-env-bottom', 'paddingBottom', 'direct-env-bottom-value'],
+          ['.fallback-var-bottom', 'paddingBottom', 'fallback-var-bottom-value'],
+        ];
+
+        metrics.forEach(([selector, property, outputId]) => {
+          const element = document.querySelector(selector);
+          const output = document.getElementById(outputId);
+
+          if (!element || !output) return;
+
+          output.textContent = getComputedStyle(element)[property];
+        });
+
+        const cssVarOutput = document.getElementById('css-var-bottom-value');
+
+        if (cssVarOutput) {
+          cssVarOutput.textContent = rootStyle.getPropertyValue('--safe-area-inset-bottom').trim() || 'not set';
+        }
+      }
+
+      updateMetrics();
+      window.addEventListener('resize', updateMetrics);
+      window.addEventListener('orientationchange', updateMetrics);
+      window.setInterval(updateMetrics, 1000);
+    </script>
+  </body>
+</html>

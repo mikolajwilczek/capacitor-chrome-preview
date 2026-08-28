@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-27T14:39:38.384Z",
+  "configuration": {
+    "deviceLabel": "Samsung A54",
+    "navigationMode": "gesture",
+    "notes": null
+  },
+  "web": {
+    "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A546B Build/BP4A.251205.006; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/151.0.7922.170 Mobile Safari/537.36",
+    "platform": "Linux aarch64",
+    "language": "en-GB",
+    "devicePixelRatio": 2.8125,
+    "window": {
+      "innerWidth": 832,
+      "innerHeight": 384,
+      "outerWidth": 832,
+      "outerHeight": 384,
+      "scrollX": 0,
+      "scrollY": 296.8888854980469
+    },
+    "documentElement": {
+      "clientWidth": 832,
+      "clientHeight": 384,
+      "scrollWidth": 832,
+      "scrollHeight": 873
+    },
+    "screen": {
+      "width": 832,
+      "height": 384,
+      "availWidth": 832,
+      "availHeight": 384,
+      "colorDepth": 24,
+      "pixelDepth": 24,
+      "orientation": {
+        "type": "landscape-secondary",
+        "angle": 270
+      }
+    },
+    "visualViewport": {
+      "width": 832,
+      "height": 384,
+      "offsetLeft": 0,
+      "offsetTop": 0,
+      "pageLeft": 0,
+      "pageTop": 296.8888854980469,
+      "scale": 1
+    },
+    "cssSafeAreaPx": {
+      "top": 30,
+      "right": 29,
+      "bottom": 15,
+      "left": 0
+    },
+    "injectedSafeAreaVariables": {
+      "top": {
+        "raw": "29px",
+        "cssPixels": 29
+      },
+      "right": {
+        "raw": "28px",
+        "cssPixels": 28
+      },
+      "bottom": {
+        "raw": "14px",
+        "cssPixels": 14
+      },
+      "left": {
+        "raw": "0px",
+        "cssPixels": 0
+      }
+    }
+  },
+  "native": {
+    "available": true,
+    "platform": "android",
+    "system": {
+      "release": "16",
+      "sdkInt": 36,
+      "manufacturer": "samsung",
+      "brand": "samsung",
+      "model": "SM-A546B",
+      "device": "a54x",
+      "product": "a54xnaeea",
+      "orientation": "landscape",
+      "rotation": "270"
+    },
+    "displayMetrics": {
+      "widthPixels": 2340,
+      "heightPixels": 1080,
+      "density": 2.8125,
+      "densityDpi": 450,
+      "xdpi": 403.4110107421875,
+      "ydpi": 401.593994140625
+    },
+    "windowBounds": {
+      "px": {
+        "left": 0,
+        "top": 0,
+        "right": 2340,
+        "bottom": 1080,
+        "width": 2340,
+        "height": 1080
+      },
+      "dp": {
+        "left": 0,
+        "top": 0,
+        "right": 832,
+        "bottom": 384,
+        "width": 832,
+        "height": 384
+      }
+    },
+    "decorView": {
+      "widthPx": 2340,
+      "heightPx": 1080,
+      "widthDp": 832,
+      "heightDp": 384,
+      "locationInWindowPx": {
+        "x": 0,
+        "y": 0,
+        "xDp": 0,
+        "yDp": 0
+      }
+    },
+    "webView": {
+      "widthPx": 2340,
+      "heightPx": 1080,
+      "widthDp": 832,
+      "heightDp": 384,
+      "locationInWindowPx": {
+        "x": 0,
+        "y": 0,
+        "xDp": 0,
+        "yDp": 0
+      },
+      "userAgent": "Mozilla/5.0 (Linux; Android 16; SM-A546B Build/BP4A.251205.006; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/151.0.7922.170 Mobile Safari/537.36"
+    },
+    "windowInsets": {
+      "statusBars": {
+        "px": {
+          "top": 84,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "dp": {
+          "top": 29.866666666666667,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "navigationBars": {
+        "px": {
+          "top": 0,
+          "right": 0,
+          "bottom": 42,
+          "left": 0
+        },
+        "dp": {
+          "top": 0,
+          "right": 0,
+          "bottom": 14.933333333333334,
+          "left": 0
+        }
+      },
+      "systemBars": {
+        "px": {
+          "top": 84,
+          "right": 0,
+          "bottom": 42,
+          "left": 0
+        },
+        "dp": {
+          "top": 29.866666666666667,
+          "right": 0,
+          "bottom": 14.933333333333334,
+          "left": 0
+        }
+      },
+      "displayCutout": {
+        "px": {
+          "top": 0,
+          "right": 80,
+          "bottom": 0,
+          "left": 0
+        },
+        "dp": {
+          "top": 0,
+          "right": 28.444444444444443,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "systemBarsAndCutout": {
+        "px": {
+          "top": 84,
+          "right": 80,
+          "bottom": 42,
+          "left": 0
+        },
+        "dp": {
+          "top": 29.866666666666667,
+          "right": 28.444444444444443,
+          "bottom": 14.933333333333334,
+          "left": 0
+        }
+      },
+      "systemGestures": {
+        "px": {
+          "top": 84,
+          "right": 164,
+          "bottom": 90,
+          "left": 84
+        },
+        "dp": {
+          "top": 29.866666666666667,
+          "right": 58.31111111111111,
+          "bottom": 32,
+          "left": 29.866666666666667
+        }
+      },
+      "mandatorySystemGestures": {
+        "px": {
+          "top": 84,
+          "right": 0,
+          "bottom": 90,
+          "left": 0
+        },
+        "dp": {
+          "top": 29.866666666666667,
+          "right": 0,
+          "bottom": 32,
+          "left": 0
+        }
+      },
+      "tappableElement": {
+        "px": {
+          "top": 84,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "dp": {
+          "top": 29.866666666666667,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "ime": {
+        "px": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "dp": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "statusBarsVisible": true,
+      "navigationBarsVisible": true,
+      "imeVisible": false,
+      "systemBarsIgnoringVisibility": {
+        "px": {
+          "top": 84,
+          "right": 0,
+          "bottom": 42,
+          "left": 0
+        },
+        "dp": {
+          "top": 29.866666666666667,
+          "right": 0,
+          "bottom": 14.933333333333334,
+          "left": 0
+        }
+      }
+    },
+    "displayCutout": {
+      "available": true,
+      "safeInsets": {
+        "px": {
+          "top": 0,
+          "right": 80,
+          "bottom": 0,
+          "left": 0
+        },
+        "dp": {
+          "top": 0,
+          "right": 28.444444444444443,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "waterfallInsets": {
+        "px": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "dp": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "boundingRects": [
+        {
+          "px": {
+            "left": 2260,
+            "top": 511,
+            "right": 2318,
+            "bottom": 569,
+            "width": 58,
+            "height": 58
+          },
+          "dp": {
+            "left": 803.5555555555555,
+            "top": 181.6888888888889,
+            "right": 824.1777777777778,
+            "bottom": 202.3111111111111,
+            "width": 20.622222222222263,
+            "height": 20.622222222222206
+          }
+        }
+      ]
+    }
+  }
+}

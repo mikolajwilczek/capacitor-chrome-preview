@@ -1,0 +1,237 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-27T08:52:15.881Z",
+  "configuration": {
+    "deviceLabel": "iPhone 13",
+    "navigationMode": "not-applicable",
+    "notes": null
+  },
+  "web": {
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+    "platform": "iPhone",
+    "language": "en-GB",
+    "devicePixelRatio": 3,
+    "window": {
+      "innerWidth": 844,
+      "innerHeight": 390,
+      "outerWidth": 844,
+      "outerHeight": 390,
+      "scrollX": 0,
+      "scrollY": 348
+    },
+    "documentElement": {
+      "clientWidth": 844,
+      "clientHeight": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 913
+    },
+    "screen": {
+      "width": 390,
+      "height": 844,
+      "availWidth": 390,
+      "availHeight": 844,
+      "colorDepth": 24,
+      "pixelDepth": 24,
+      "orientation": {
+        "type": "landscape-secondary",
+        "angle": 270
+      }
+    },
+    "visualViewport": {
+      "width": 844,
+      "height": 390,
+      "offsetLeft": 0,
+      "offsetTop": 0,
+      "pageLeft": 0,
+      "pageTop": 348,
+      "scale": 1
+    },
+    "cssSafeAreaPx": {
+      "top": 0,
+      "right": 47,
+      "bottom": 20,
+      "left": 47
+    },
+    "injectedSafeAreaVariables": {
+      "top": null,
+      "right": null,
+      "bottom": null,
+      "left": null
+    }
+  },
+  "native": {
+    "available": true,
+    "system": {
+      "model": "iPhone",
+      "name": "iOS",
+      "interfaceIdiom": "phone",
+      "interfaceOrientation": "landscape-left",
+      "version": "26.6"
+    },
+    "webView": {
+      "scrollViewContentInsetPoints": {
+        "left": 0,
+        "top": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "scrollViewAdjustedContentInsetPoints": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0
+      },
+      "framePoints": {
+        "minY": 0,
+        "maxX": 844,
+        "maxY": 390,
+        "height": 390,
+        "y": 0,
+        "x": 0,
+        "width": 844,
+        "minX": 0
+      },
+      "safeArea": {
+        "pixelsAtNativeScale": {
+          "left": 141,
+          "top": 0,
+          "right": 141,
+          "bottom": 60
+        },
+        "points": {
+          "left": 47,
+          "top": 0,
+          "right": 47,
+          "bottom": 20
+        }
+      },
+      "boundsPoints": {
+        "maxX": 844,
+        "minY": 0,
+        "maxY": 390,
+        "height": 390,
+        "y": 0,
+        "x": 0,
+        "width": 844,
+        "minX": 0
+      }
+    },
+    "screen": {
+      "scale": 3,
+      "nativeScale": 3,
+      "nativeBoundsPixels": {
+        "maxX": 1170,
+        "minY": 0,
+        "maxY": 2532,
+        "height": 2532,
+        "y": 0,
+        "x": 0,
+        "width": 1170,
+        "minX": 0
+      },
+      "maximumFramesPerSecond": 60,
+      "boundsPoints": {
+        "maxX": 844,
+        "minY": 0,
+        "maxY": 390,
+        "height": 390,
+        "y": 0,
+        "x": 0,
+        "width": 844,
+        "minX": 0
+      }
+    },
+    "statusBar": {
+      "hidden": true,
+      "framePoints": {
+        "minY": 0,
+        "maxX": 0,
+        "maxY": 0,
+        "height": 0,
+        "y": 0,
+        "x": 0,
+        "width": 0,
+        "minX": 0
+      }
+    },
+    "platform": "ios",
+    "window": {
+      "boundsPoints": {
+        "minY": 0,
+        "maxX": 844,
+        "maxY": 390,
+        "height": 390,
+        "y": 0,
+        "x": 0,
+        "width": 844,
+        "minX": 0
+      },
+      "framePoints": {
+        "minX": 0,
+        "maxY": 390,
+        "height": 390,
+        "maxX": 844,
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "minY": 0
+      },
+      "safeArea": {
+        "pixelsAtNativeScale": {
+          "left": 141,
+          "bottom": 60,
+          "right": 141,
+          "top": 0
+        },
+        "points": {
+          "left": 47,
+          "bottom": 20,
+          "right": 47,
+          "top": 0
+        }
+      }
+    },
+    "rootView": {
+      "layoutMarginsPoints": {
+        "right": 63,
+        "top": 0,
+        "bottom": 20,
+        "left": 63
+      },
+      "framePoints": {
+        "minX": 0,
+        "height": 390,
+        "maxY": 390,
+        "maxX": 844,
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "minY": 0
+      },
+      "safeArea": {
+        "pixelsAtNativeScale": {
+          "right": 141,
+          "top": 0,
+          "bottom": 60,
+          "left": 141
+        },
+        "points": {
+          "right": 47,
+          "top": 0,
+          "bottom": 20,
+          "left": 47
+        }
+      },
+      "boundsPoints": {
+        "minX": 0,
+        "maxY": 390,
+        "height": 390,
+        "maxX": 844,
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "minY": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+name: Device profile report
+description: Report measured geometry or a mismatch in an existing profile.
+title: "Device profile: "
+labels:
+  - device-profile
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Prefer a Geometry Probe export from a physical device. Inspect the JSON before upload and remove private notes or unique identifiers.
+  - type: input
+    id: device
+    attributes:
+      label: Device and OS
+      description: Device model, OS version, and Android navigation mode where applicable.
+    validations:
+      required: true
+  - type: input
+    id: orientation
+    attributes:
+      label: Orientation
+      description: Portrait or landscape, including rotation direction when known.
+    validations:
+      required: true
+  - type: textarea
+    id: measurements
+    attributes:
+      label: Measurements
+      description: Viewport, DPR, safe areas, system bars, and cutout values or a link to a reviewed JSON export.
+    validations:
+      required: true
+  - type: textarea
+    id: mismatch
+    attributes:
+      label: Preview mismatch
+      description: Explain how the current profile differs from the measurement.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I inspected all attached data and removed private notes, unique identifiers, credentials, and employer/client material.
+          required: true

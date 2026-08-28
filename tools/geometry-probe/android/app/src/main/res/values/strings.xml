@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Geometry Probe</string>
+    <string name="title_activity_main">Geometry Probe</string>
+    <string name="package_name">dev.mikolajwilczek.capacitorchromepreview.geometryprobe</string>
+    <string name="custom_url_scheme">dev.mikolajwilczek.capacitorchromepreview.geometryprobe</string>
+</resources>

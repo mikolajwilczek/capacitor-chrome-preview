@@ -1,0 +1,12 @@
+node_modules/
+.tmp/
+dist/
+coverage/
+.coverage/
+.nyc_output/
+*.log
+.DS_Store
+.vscode/
+.env*
+!.env.example
+docs/private/

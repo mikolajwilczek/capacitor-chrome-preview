@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible problem in the local Chrome preview.
+title: "Bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use a generic reproduction. Do not upload `.tmp/chrome-preview-profile`, private URLs, screenshots, logs, cookies, tokens, or employer/client code.
+  - type: input
+    id: version
+    attributes:
+      label: Commit
+      description: The commit SHA you tested.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: macOS, Google Chrome, Node.js, and npm versions.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Generic reproduction
+      description: Include the command and the smallest public or self-contained example.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed private URLs, screenshots, logs, credentials, cookies, profile data, and employer/client code.
+          required: true

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <title>Geometry Probe</title>
+    <link rel="stylesheet" href="./styles.css?v=3">
+  </head>
+  <body>
+    <div class="safe-area-visual" aria-hidden="true">
+      <div class="safe-area-edge safe-area-edge-top"></div>
+      <div class="safe-area-edge safe-area-edge-right"></div>
+      <div class="safe-area-edge safe-area-edge-bottom"></div>
+      <div class="safe-area-edge safe-area-edge-left"></div>
+    </div>
+
+    <main>
+      <header>
+        <p class="eyebrow">Capacitor Chrome Preview</p>
+        <h1>Geometry Probe</h1>
+        <p>Enter the model and save one clean portrait capture.</p>
+      </header>
+
+      <section class="card configuration-card">
+        <h2>Capture</h2>
+        <p class="configuration-help">OS and orientation are recorded automatically. Export closes the keyboard, waits one second, then measures.</p>
+        <label>
+          Device model
+          <input id="device-label" autocomplete="off" placeholder="iPhone 13" required>
+        </label>
+        <label>
+          Android navigation
+          <select id="navigation-mode">
+            <option value="not-applicable">Not applicable (iPhone)</option>
+            <option value="gesture">Gesture navigation</option>
+            <option value="three-button">Three-button navigation</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="summary-grid" aria-live="polite">
+        <article class="metric-card">
+          <span>Viewport</span>
+          <strong id="viewport-summary">Measuring…</strong>
+        </article>
+        <article class="metric-card">
+          <span>CSS safe area</span>
+          <strong id="safe-area-summary">Measuring…</strong>
+        </article>
+        <article class="metric-card">
+          <span>Native bridge</span>
+          <strong id="native-summary">Measuring…</strong>
+        </article>
+      </section>
+
+      <section class="card actions">
+        <button id="copy" type="button">Copy JSON</button>
+        <button id="download" type="button">Save JSON…</button>
+        <p id="status" role="status">Ready.</p>
+      </section>
+
+      <section class="card output-card">
+        <div class="output-heading">
+          <h2>Measurement</h2>
+          <code id="timestamp">pending</code>
+        </div>
+        <pre id="output">Measuring…</pre>
+      </section>
+    </main>
+
+    <div id="safe-area-probe" aria-hidden="true"></div>
+    <script src="./app.js?v=4"></script>
+  </body>
+</html>
