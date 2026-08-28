@@ -1,7 +1,6 @@
 {
   "name": "capacitor-chrome-preview",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
   "type": "module",
   "description": "Chrome-based preview harness for Capacitor-style mobile app constraints.",
   "license": "MIT",
@@ -15,7 +14,15 @@
     "url": "https://github.com/mikolajwilczek/capacitor-chrome-preview/issues"
   },
   "bin": {
-    "capacitor-chrome-preview": "./dist/preview.js"
+    "capacitor-chrome-preview": "dist/preview.js"
+  },
+  "files": [
+    "dist/",
+    "docs/manual-safe-area-test.html"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "engines": {
     "node": "^24.15.0"
@@ -26,8 +33,9 @@
     "test:build": "tsc -p tsconfig.test.json",
     "test": "npm run test:build --silent && node --test .tmp/test-dist/tests/**/*.test.js",
     "check": "npm run typecheck --silent && npm run build --silent && npm test --silent",
-    "postinstall": "node scripts/configure-git-hooks.mjs",
-    "preview": "npm run build --silent && node dist/preview.js"
+    "prepack": "npm run check",
+    "preview": "npm run build --silent && node dist/preview.js",
+    "setup:hooks": "node scripts/configure-git-hooks.mjs"
   },
   "dependencies": {
     "chrome-remote-interface": "^0.34.0",

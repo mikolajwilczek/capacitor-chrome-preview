@@ -2,9 +2,9 @@
 
 All notable changes to this project will be documented here.
 
-Until the first public version is tagged, changes stay under `Unreleased`.
-
 ## Unreleased
+
+## 1.0.0 - 2026-08-28
 
 ### Added
 

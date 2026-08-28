@@ -11,7 +11,14 @@ Capacitor Chrome Preview is early-stage developer tooling for Capacitor and othe
 
 ## Before Opening A PR
 
-Run:
+Install dependencies and configure the tracked pre-commit hook:
+
+```sh
+npm install
+npm run setup:hooks
+```
+
+Then run:
 
 ```sh
 npm run check
@@ -21,9 +28,8 @@ npm run check
 command with Node.js 24 on pushes to `main`/`master` and on pull requests. CI
 uses Linux because these checks are platform-agnostic and do not launch Chrome.
 
-Dependency installation configures the tracked pre-commit hook for this
-repository. The hook runs `npm run check` before each commit. An existing
-`core.hooksPath` with a different value is left unchanged.
+The hook runs `npm run check` before each commit. An existing `core.hooksPath`
+with a different value is left unchanged.
 
 For preview behavior changes, run the manual safe-area page:
 

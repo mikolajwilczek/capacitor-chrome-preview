@@ -47,17 +47,16 @@ Prerequisites:
 - stable Google Chrome;
 - Node.js 24.15 or newer with npm.
 
-Install dependencies and open the bundled safe-area test page:
+Open the bundled safe-area test page:
 
 ```sh
-npm install
-npm run preview
+npx capacitor-chrome-preview
 ```
 
 Choose a device profile:
 
 ```sh
-npm run preview -- --device iphone-13
+npx capacitor-chrome-preview --device iphone-13
 ```
 
 When running in an interactive terminal:
@@ -108,12 +107,13 @@ Current device profiles:
 - `galaxy-a54`
 - `galaxy-a54-3-button`
 
-## npm Status
+## Installation
 
-The package is not published to npm. Use `npm run preview` from a local checkout.
+Run the latest published version without installing it globally:
 
-npm publication, package metadata, and install commands have a separate future
-release gate.
+```sh
+npx capacitor-chrome-preview
+```
 
 ## What This Does Not Simulate
 
@@ -130,6 +130,8 @@ target URL or page data itself.
 ## Development
 
 ```sh
+npm install
+npm run setup:hooks
 npm run typecheck
 npm run build
 npm test
@@ -141,11 +143,11 @@ The tests cover CLI argument parsing, app-mode Chrome launch arguments, CDP emul
 Maintainers can validate device-profile geometry against physical iOS and
 Android WebViews with the repo-only [Geometry Probe](tools/geometry-probe/).
 
-Dependency installation configures the tracked pre-commit hook for this
-repository unless a different `core.hooksPath` is already set. The hook runs
-`npm run check`, which mirrors the GitHub Actions CI workflow. CI uses a Linux
-runner because the automated suite is platform-agnostic and does not launch
-Chrome. Manual preview testing still requires macOS and Google Chrome.
+`npm run setup:hooks` configures the tracked pre-commit hook for this repository
+unless a different `core.hooksPath` is already set. The hook runs the same
+checks as GitHub Actions through `npm run check`. CI uses a Linux runner because
+the automated suite is platform-agnostic and does not launch Chrome. Manual
+preview testing still requires macOS and Google Chrome.
 
 ## Documentation
 
