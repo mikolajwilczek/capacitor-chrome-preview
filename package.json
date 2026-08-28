@@ -1,6 +1,6 @@
 {
   "name": "capacitor-chrome-preview",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "Chrome-based preview harness for Capacitor-style mobile app constraints.",
   "keywords": [
