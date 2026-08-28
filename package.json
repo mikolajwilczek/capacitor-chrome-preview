@@ -3,6 +3,17 @@
   "version": "1.0.0",
   "type": "module",
   "description": "Chrome-based preview harness for Capacitor-style mobile app constraints.",
+  "keywords": [
+    "capacitor",
+    "chrome",
+    "chrome-devtools-protocol",
+    "cli",
+    "developer-tools",
+    "hybrid-apps",
+    "mobile",
+    "safe-area",
+    "webview"
+  ],
   "license": "MIT",
   "author": "Mikołaj Wilczek",
   "repository": {
