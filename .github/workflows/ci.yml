@@ -30,3 +30,11 @@ jobs:
 
       - name: Run checks
         run: npm run check
+
+      - name: Smoke-test packed package
+        shell: bash
+        run: |
+          package_file="$(npm pack --silent --ignore-scripts --pack-destination "$RUNNER_TEMP")"
+          smoke_dir="$(mktemp -d "$RUNNER_TEMP/package-smoke.XXXXXX")"
+          npm install --prefix "$smoke_dir" --ignore-scripts "$RUNNER_TEMP/$package_file"
+          "$smoke_dir/node_modules/.bin/capacitor-chrome-preview" --help
