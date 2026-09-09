@@ -45,6 +45,7 @@ type DebugPortReservation = (debugPort: number) => Promise<void>;
 export type PreviewOptions = {
   url: string;
   deviceId: string;
+  persistSession: boolean;
 };
 
 export type ParsedPreviewCommand =
@@ -71,7 +72,9 @@ export async function main(): Promise<void> {
   const port = parseDebugPort(process.env.CAP_CHROME_PREVIEW_PORT);
   const launchId = randomUUID();
   const loadingUrl = createPreviewLoadingUrl(launchId);
-  const profileDir = createPreviewProfileDir(launchId);
+  const profileDir = options.persistSession
+    ? createPersistentPreviewProfileDir()
+    : createPreviewProfileDir(launchId);
 
   await assertDebugPortAvailable(port);
   await mkdir(profileDir, { recursive: true });
@@ -82,7 +85,9 @@ export async function main(): Promise<void> {
   try {
     chrome = await launchPreviewAppWindow(chromePath, initialDevice, port, profileDir, loadingUrl);
   } catch (error) {
-    await tryRemovePreviewProfileDir(profileDir);
+    if (!options.persistSession) {
+      await tryRemovePreviewProfileDir(profileDir);
+    }
     throw error;
   }
 
@@ -91,7 +96,13 @@ export async function main(): Promise<void> {
   let cleanupPromise: Promise<void> | undefined;
 
   const cleanup = (): Promise<void> => {
-    cleanupPromise ??= cleanupPreviewRun(chrome, profileDir, session, removeOwnedChromeSignalHandlers);
+    cleanupPromise ??= cleanupPreviewRun(
+      chrome,
+      profileDir,
+      options.persistSession,
+      session,
+      removeOwnedChromeSignalHandlers,
+    );
     return cleanupPromise;
   };
 
@@ -115,6 +126,7 @@ export async function main(): Promise<void> {
         url: options.url,
         port,
         profileDir,
+        persistentProfile: options.persistSession,
         devices,
         initialActiveDeviceId: initialDevice.id,
         initialStatus,
@@ -129,7 +141,7 @@ export async function main(): Promise<void> {
     }
 
     const exitRequested = waitForExit(activeSession);
-    logStartup(options.url, initialDevice, initialStatus, port, profileDir);
+    logStartup(options.url, initialDevice, initialStatus, port, profileDir, options.persistSession);
     await exitRequested;
   } finally {
     await cleanup();
@@ -139,6 +151,7 @@ export async function main(): Promise<void> {
 async function cleanupPreviewRun(
   chrome: ChildProcess,
   profileDir: string,
+  persistSession: boolean,
   session: PreviewSession | undefined,
   removeOwnedChromeSignalHandlers: () => void,
 ): Promise<void> {
@@ -151,7 +164,13 @@ async function cleanupPreviewRun(
       }
     }
 
-    if (await terminateSpawnedChrome(chrome)) {
+    const chromeStopped = await terminateSpawnedChrome(chrome);
+
+    if (persistSession) {
+      return;
+    }
+
+    if (chromeStopped) {
       await tryRemovePreviewProfileDir(profileDir);
     } else {
       console.warn(`Preview profile retained because Chrome may still be using it: ${profileDir}`);
@@ -877,6 +896,7 @@ export function parsePreviewOptions(
   let url: string | undefined;
   let positionalUrl: string | undefined;
   let deviceId = DEFAULT_DEVICE_ID;
+  let persistSession = false;
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -907,6 +927,11 @@ export function parsePreviewOptions(
       continue;
     }
 
+    if (arg === '--persist-session') {
+      persistSession = true;
+      continue;
+    }
+
     if (arg.startsWith('-')) {
       throw new Error(`Unknown option: ${arg}`);
     }
@@ -930,6 +955,7 @@ export function parsePreviewOptions(
     options: {
       url: selectedUrl,
       deviceId,
+      persistSession,
     },
   };
 }
@@ -971,7 +997,10 @@ export function createUsage(availableDevices: readonly PreviewDevice[]): string 
     .join('\n');
 
   return [
-    'Usage: capacitor-chrome-preview [url] [--url <url>] [--device <device-id>]',
+    'Usage: capacitor-chrome-preview [url] [--url <url>] [--device <device-id>] [--persist-session]',
+    '',
+    'Options:',
+    '  --persist-session  Reuse a dedicated profile to keep logins and site data.',
     '',
     'Devices:',
     deviceList,
@@ -1003,6 +1032,7 @@ export function logStartup(
   status: PreviewUiStatus,
   debugPort = DEFAULT_DEBUG_PORT,
   userDataDir = createPreviewProfileDir('manual'),
+  persistentProfile = false,
 ): void {
   const statusLogger = status.kind === 'ok' ? console.log : console.warn;
 
@@ -1010,7 +1040,7 @@ export function logStartup(
   console.log(`Capacitor Chrome Preview is running for ${url}`);
   console.log(`Device: ${device.name}`);
   console.log(`Chrome remote debugging: http://127.0.0.1:${debugPort}`);
-  console.log(`Profile: ${userDataDir}`);
+  console.log(`Profile: ${userDataDir} (${persistentProfile ? 'persistent' : 'temporary'})`);
   console.log('Press Ctrl+C to reset the preview and close the preview Chrome window.');
 }
 
@@ -1069,6 +1099,10 @@ async function reserveLoopbackPort(debugPort: number): Promise<void> {
 
 export function createPreviewProfileDir(launchId: string): string {
   return path.join(process.cwd(), '.tmp', 'chrome-preview-profile', launchId);
+}
+
+export function createPersistentPreviewProfileDir(): string {
+  return path.join(process.cwd(), '.tmp', 'chrome-preview-profile', 'persistent');
 }
 
 export function validatePreviewProfileDir(profileDir: string): string {

@@ -59,6 +59,12 @@ Choose a device profile:
 npx capacitor-chrome-preview --device iphone-13
 ```
 
+Keep site logins between runs:
+
+```sh
+npx capacitor-chrome-preview --persist-session http://localhost:4200
+```
+
 When running in an interactive terminal:
 
 - Use arrow keys and Enter to select a device.
@@ -67,22 +73,30 @@ When running in an interactive terminal:
 - Press `o` to return to the launch URL.
 - Press `q` to reset, close the preview Chrome window, and exit.
 
-Each run gets an isolated Chrome profile under
+By default, each run gets an isolated Chrome profile under
 `.tmp/chrome-preview-profile/<launch-id>`. After Chrome confirms exit, the CLI
 removes that exact run directory. If Chrome cannot be confirmed stopped, the
 directory is retained and its path is printed instead of risking live profile
 data. The CLI refuses to start when its loopback debugging port is occupied. It
 never attaches to or closes an existing Chrome session.
 
-`q` and terminal Ctrl+C perform the full reset and normally remove the profile.
-An external `SIGINT`, `SIGTERM`, or `SIGHUP` stops the owned Chrome process
-immediately; that abrupt path can retain the run directory because the CLI may
-not remain alive long enough to confirm exit.
+For the default temporary profile, `q` and terminal Ctrl+C perform the full
+reset and normally remove the profile. An external `SIGINT`, `SIGTERM`, or
+`SIGHUP` stops the owned Chrome process immediately; that abrupt path can retain
+the run directory because the CLI may not remain alive long enough to confirm
+exit.
+
+`--persist-session` instead reuses the tool-owned project profile at
+`.tmp/chrome-preview-profile/persistent`. Chrome keeps its cookies and site
+storage there, so compatible site logins survive preview restarts. The CLI
+never uses your normal Chrome profile. Treat this directory as sensitive local
+data: do not commit, archive, or share it. Close the preview and remove the
+directory when you want to sign out everywhere or reset the profile.
 
 ## Command Options
 
 ```sh
-capacitor-chrome-preview [url] [--url <url>] [--device <device-id>]
+capacitor-chrome-preview [url] [--url <url>] [--device <device-id>] [--persist-session]
 ```
 
 Arguments and flags:
@@ -91,6 +105,8 @@ Arguments and flags:
   safe-area test page opens. Embedded URL credentials are rejected.
 - `--url <url>` or `--url=<url>`: explicit target URL. This takes precedence over a positional URL.
 - `--device <device-id>` or `--device=<device-id>`: starting device profile.
+- `--persist-session`: reuse a dedicated project-local Chrome profile so
+  cookies and site storage survive between runs.
 - `--help` or `-h`: print available devices.
 
 Environment variables:
@@ -155,6 +171,7 @@ preview testing still requires macOS and Google Chrome.
 - [Technology Architecture](docs/technology-architecture.md)
 - [Device Profile Research](docs/research/device-profiles.md)
 - [Hardware Back Interaction Research](docs/research/hardware-back-interactions.md)
+- [Persistent Chrome Profile Research](docs/research/persistent-chrome-profile.md)
 - [Existing Solutions Research](docs/research/existing-solutions.md)
 - [Manual Safe-Area Test Page](docs/manual-safe-area-test.html)
 - [Regression Guardrails](docs/regression-guardrails.md)

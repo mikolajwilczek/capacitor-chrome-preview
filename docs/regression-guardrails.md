@@ -18,7 +18,12 @@ These are the behaviors future changes should preserve.
 ## Chrome Session Ownership
 
 - Validate the configured debug port, bind CDP explicitly to `127.0.0.1`, and refuse an occupied port before launching Chrome.
-- Give each run a unique profile directory and an unguessable launch-marker URL. Attach only to the page whose URL exactly matches that marker.
+- Give each default run a unique profile directory and every run an unguessable
+  launch-marker URL. Attach only to the page whose URL exactly matches that
+  marker.
+- Allow opt-in session persistence only through a tool-owned custom profile.
+  Never reuse the user's normal Chrome data directory, and never automatically
+  remove the persistent profile.
 - Abort if the spawned Chrome process exits before the debug endpoint and marked target are both found.
 - Never fall back to a pre-existing or lookalike target, enumerate targets for cleanup, close unrelated targets, or call CDP `Browser.close`.
 - Reset only the attached target and close its CDP client. Terminate Chrome only through the process group created by this run.
@@ -64,6 +69,8 @@ These are the behaviors future changes should preserve.
 - Reset must remove injected DOM/style, restore previous inline safe-area variables, clear CDP device metrics, clear safe-area override, disable touch emulation, and disable mouse-to-touch conversion.
 - Do not normalize broad all-sites extension access.
 - Do not track private company code, internal URLs, private screenshots, secrets, or local app paths.
+- Keep persistent profile contents ignored and document that they can contain
+  sensitive cookies and site storage.
 
 ## Required Checks
 

@@ -58,7 +58,11 @@ test('uses physical Galaxy A54 portrait geometry', () => {
   assert.equal(threeButton.systemBars?.navigationBarHeight, 48);
 });
 
-function expectRun(command: ParsedPreviewCommand): { url: string; deviceId: string } {
+function expectRun(command: ParsedPreviewCommand): {
+  url: string;
+  deviceId: string;
+  persistSession: boolean;
+} {
   assert.equal(command.kind, 'run');
   return command.options;
 }
@@ -69,6 +73,7 @@ test('uses the bundled safe-area test page and default device when no arguments 
   assert.deepEqual(options, {
     url: DEFAULT_URL,
     deviceId: DEFAULT_DEVICE_ID,
+    persistSession: false,
   });
   assert.equal(new URL(options.url).protocol, 'file:');
   assert.match(options.url, /\/docs\/manual-safe-area-test\.html$/);
@@ -105,6 +110,12 @@ test('accepts --device=value', () => {
   assert.equal(options.deviceId, 'galaxy-a54');
 });
 
+test('accepts --persist-session', () => {
+  const options = expectRun(parsePreviewOptions(['--persist-session'], devices));
+
+  assert.equal(options.persistSession, true);
+});
+
 test('explicit --url takes precedence over a positional URL', () => {
   const options = expectRun(parsePreviewOptions([
     'http://localhost:3000/',
@@ -120,6 +131,7 @@ test('returns usage for --help without exiting the process', () => {
 
   assert.equal(command.kind, 'help');
   assert.match(command.usage, /Usage: capacitor-chrome-preview/);
+  assert.match(command.usage, /--persist-session/);
   assert.match(command.usage, /iphone-15-pro/);
 });
 

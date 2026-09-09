@@ -9,6 +9,7 @@ import {
   applyEmulationOverrides,
   assertDebugPortAvailable,
   createChromeLaunchArgs,
+  createPersistentPreviewProfileDir,
   createPreviewProfileDir,
   createPreviewLoadingUrl,
   createRuntimeSource,
@@ -224,6 +225,19 @@ test('profile cleanup removes only the validated one-run directory', async () =>
 
   await removePreviewProfileDir(profileDir);
   await assert.rejects(() => access(profileDir), /ENOENT/);
+});
+
+test('persistent profile uses a stable dedicated directory that cleanup rejects', () => {
+  const profileDir = createPersistentPreviewProfileDir();
+
+  assert.equal(
+    profileDir,
+    path.join(process.cwd(), '.tmp', 'chrome-preview-profile', 'persistent'),
+  );
+  assert.throws(
+    () => validatePreviewProfileDir(profileDir),
+    /Refusing to remove unchecked preview profile path/,
+  );
 });
 
 test('debug port configuration accepts only valid TCP ports', () => {
