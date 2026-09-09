@@ -4,6 +4,13 @@ All notable changes to this project will be documented here.
 
 ## Unreleased
 
+## 1.1.0 - 2026-09-09
+
+### Added
+
+- `--persist-session` for reusing a dedicated project-local Chrome profile so
+  site logins and storage can survive preview restarts.
+
 ## 1.0.0 - 2026-08-28
 
 ### Added

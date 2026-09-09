@@ -11,6 +11,7 @@ export type PreviewUiProps = {
   url: string;
   port: number;
   profileDir: string;
+  persistentProfile: boolean;
   devices: readonly PreviewDevice[];
   initialActiveDeviceId: string;
   initialStatus: PreviewUiStatus;
@@ -78,6 +79,7 @@ function PreviewApp({
   url,
   port,
   profileDir,
+  persistentProfile,
   devices,
   initialActiveDeviceId,
   initialStatus,
@@ -206,7 +208,9 @@ function PreviewApp({
         <Text bold>Capacitor Chrome Preview</Text>
         <Text>URL: <Text color="cyan">{url}</Text></Text>
         <Text>Chrome remote debugging: <Text color="cyan">http://127.0.0.1:{port}</Text></Text>
-        <Text>Profile: <Text color="gray">{profileDir}</Text></Text>
+        <Text>
+          Profile: <Text color="gray">{profileDir} ({persistentProfile ? 'persistent' : 'temporary'})</Text>
+        </Text>
       </Box>
 
       <Box flexDirection="column">
