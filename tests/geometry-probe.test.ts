@@ -17,9 +17,9 @@ test('geometry probe is isolated from the publishable CLI', async () => {
   };
 
   assert.equal(packageJson.private, true);
-  assert.equal(packageJson.dependencies?.['@capacitor/core'], '8.5.0');
-  assert.equal(packageJson.dependencies?.['@capacitor/filesystem'], '^8.1.3');
-  assert.equal(packageJson.dependencies?.['@capacitor/share'], '^8.0.1');
+  assert.equal(packageJson.dependencies?.['@capacitor/core'], '8.5.3');
+  assert.equal(packageJson.dependencies?.['@capacitor/filesystem'], '^8.1.5');
+  assert.equal(packageJson.dependencies?.['@capacitor/share'], '^8.0.3');
   assert.match(packageJson.scripts?.['build:ios'] ?? '', /-project ios\/App\/App\.xcodeproj/);
   assert.match(packageJson.scripts?.['build:android'] ?? '', /gradlew assembleDebug/);
 });
