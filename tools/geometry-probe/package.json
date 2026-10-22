@@ -12,14 +12,14 @@
     "build:ios": "cap sync ios && xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' -derivedDataPath .tmp/DerivedData CODE_SIGNING_ALLOWED=NO build"
   },
   "dependencies": {
-    "@capacitor/android": "8.5.0",
-    "@capacitor/core": "8.5.0",
-    "@capacitor/filesystem": "^8.1.3",
-    "@capacitor/ios": "8.5.0",
-    "@capacitor/share": "^8.0.1"
+    "@capacitor/android": "8.5.3",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/filesystem": "^8.1.5",
+    "@capacitor/ios": "8.5.3",
+    "@capacitor/share": "^8.0.3"
   },
   "devDependencies": {
-    "@capacitor/cli": "8.5.0"
+    "@capacitor/cli": "8.5.3"
   },
   "overrides": {
     "xcode": {

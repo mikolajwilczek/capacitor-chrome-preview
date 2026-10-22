@@ -20,7 +20,11 @@ It does not collect serial numbers, advertising IDs, `ANDROID_ID`, or Apple's
 ## Setup
 
 Requirements: Node.js 22+, Xcode for iOS, Android Studio, and mise. The local
-mise configuration pins Temurin JDK 21 for Gradle 8.14.3.
+mise configuration pins Temurin JDK 21.0.12.1 for Gradle 8.14.6.
+
+Native version pins follow Capacitor 8.5.3, with the Gradle security patch
+documented in the
+[dependency review](../../docs/research/dependency-maintenance-2026-10-22.md).
 
 ```sh
 cd tools/geometry-probe
@@ -105,10 +109,10 @@ npm run build:android
 These compile the native bridges but do not substitute for measurements on the
 physical devices.
 
-As of 2026-08-24, `npm audit --omit=dev` reports no vulnerabilities. The full
-audit reports the moderate `uuid` advisory
+As of 2026-10-22, the full `npm audit` reports no vulnerabilities. Keep the
+scoped `xcode` → `uuid: 11.1.1` override: Capacitor CLI 8.5.3 still uses
+`xcode` 3, which requests UUID 7 and would reintroduce
 [GHSA-w5hq-g745-h8pq](https://github.com/advisories/GHSA-w5hq-g745-h8pq)
-through the development-only chain `@capacitor/cli` → `xcode` → `uuid`.
-Capacitor's compatible `xcode` release still selects the affected major
-version; the suggested forced fix downgrades Capacitor, so it has not been
-applied. Recheck when either upstream package updates.
+without the override. Recheck when Capacitor adopts a newer `xcode` major.
+See the [dependency review](../../docs/research/dependency-maintenance-2026-10-22.md)
+for version decisions and validation.
